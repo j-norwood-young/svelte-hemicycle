@@ -19,6 +19,6 @@
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "@times-visuals/hemicycle": "^1.2.0"
+    "voronoi": "^1.0.0"
   }
 }
