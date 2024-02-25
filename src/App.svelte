@@ -8,6 +8,8 @@
     const dotsize = 5;
     const padding = 30;
     const total_seats = 400;
+    const color = "white";
+    const font_size = 9;
     let data = data_2019;
 </script>
 
@@ -16,17 +18,9 @@
     <button on:click={() => data = data_2024}>2024</button>
     <h1>{ data.ElectoralEvent }</h1>
     
-    <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} />
+    <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} {color} {font_size} />
 </main>
 
 <style>
-    .tooltip {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: white;
-        color: black;
-        padding: 10px;
-        border: 1px solid black;
-    }
+    
 </style>

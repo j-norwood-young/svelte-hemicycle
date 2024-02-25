@@ -1,73 +1,65 @@
-<script lang="ts">
-    import { calcVoronoi, arcFromEdges } from "./libs/voronoi";
-    import { hemicycle } from "./libs/hemicycle";
-    import { colour } from "./libs/colour";
-    
-    export let data: any;
-    export let r: number;
-    export let rows: number;
-    export let dotsize: number;
-    export let padding: number;
-    export let total_seats: number;
-    export let color = "white";
-    export let font_size = 12;
-    export let voronoi_stroke = "transparent";
-
-    let total_occupied_seats = 0;
-    let points: Array<Point> = [];
-    let party_results: PartyResult[] = [];
-    let current_party: PartyResult | null = null;
-    let test_pos = [{x: 0, y: 0}, {x: 0, y: 0}];
-    let voronoi: any;
-    let clicked = false;
-
-    $: {
-        party_results = 
-            data.PartyResults
-            .filter((results: PartyResult) => (results.Overall > 0))
-            .sort((a: PartyResult, b: PartyResult) => b.Overall - a.Overall);
-        total_occupied_seats = party_results.reduce((acc, cur) => acc + cur.Overall, 0);
-        points = hemicycle(r, rows, total_seats, 180);
-        let party_index = 0;
-        for (let seat of party_results) {
-            seat.index = party_index++;
-            seat.Color = colour(seat.index, 100);
-        }
-        let x = 0;
-        for (let i in party_results) {
-            for (let j = 0; j < party_results[i].Overall; j++) {
-                points[x].data = party_results[i];
-                x++;
-            }
-        }
-        let first_party_id = party_results[0].ID;
-        let test_points = points.filter(p => p.data?.ID === first_party_id);
-        let last_test_point = test_points[test_points.length - 1];
-        test_pos = [{x: last_test_point.x, y: last_test_point.y}, {x: last_test_point.x, y: last_test_point.y}];
-        voronoi = calcVoronoi(points, r, padding);
+<script>import { calcVoronoi, arcFromEdges } from "./libs/voronoi";
+import { hemicycle } from "./libs/hemicycle";
+import { colour } from "./libs/colour";
+export let data;
+export let r;
+export let rows;
+export let dotsize;
+export let padding;
+export let total_seats;
+export let color = "white";
+export let font_size = 12;
+export let voronoi_stroke = "transparent";
+let total_occupied_seats = 0;
+let points = [];
+let party_results = [];
+let current_party = null;
+let test_pos = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
+let voronoi;
+let clicked = false;
+$: {
+  party_results = data.PartyResults.filter((results) => results.Overall > 0).sort((a, b) => b.Overall - a.Overall);
+  total_occupied_seats = party_results.reduce((acc, cur) => acc + cur.Overall, 0);
+  points = hemicycle(r, rows, total_seats, 180);
+  let party_index = 0;
+  for (let seat of party_results) {
+    seat.index = party_index++;
+    seat.Color = colour(seat.index, 100);
+  }
+  let x = 0;
+  for (let i in party_results) {
+    for (let j = 0; j < party_results[i].Overall; j++) {
+      points[x].data = party_results[i];
+      x++;
     }
-
-    function selectParty(point: Point) {
-        if (point.data && !clicked) current_party = point.data;
-    }
-
-    function clickParty(point: Point) {
-        if (!point.data) return;
-        if (!current_party) {
-            current_party = point.data;
-            clicked = true;
-        } else if (clicked && current_party.ID === point.data.ID) {
-            current_party = null;
-            clicked = false;
-        } else {
-            current_party = point.data;
-        }
-    }
-
-    function unselectParty() {
-        if (!clicked) current_party = null;
-    }
-    
+  }
+  let first_party_id = party_results[0].ID;
+  let test_points = points.filter((p) => p.data?.ID === first_party_id);
+  let last_test_point = test_points[test_points.length - 1];
+  test_pos = [{ x: last_test_point.x, y: last_test_point.y }, { x: last_test_point.x, y: last_test_point.y }];
+  voronoi = calcVoronoi(points, r, padding);
+}
+function selectParty(point) {
+  if (point.data && !clicked)
+    current_party = point.data;
+}
+function clickParty(point) {
+  if (!point.data)
+    return;
+  if (!current_party) {
+    current_party = point.data;
+    clicked = true;
+  } else if (clicked && current_party.ID === point.data.ID) {
+    current_party = null;
+    clicked = false;
+  } else {
+    current_party = point.data;
+  }
+}
+function unselectParty() {
+  if (!clicked)
+    current_party = null;
+}
 </script>
 
 <main>
