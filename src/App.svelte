@@ -9,7 +9,7 @@
     const padding = 30;
     const total_seats = 400;
     const color = "white";
-    const font_size = 9;
+    const font_size = "0.8em";
     let data = data_2019;
 </script>
 

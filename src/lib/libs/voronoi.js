@@ -1,5 +1,12 @@
 import Voronoi from "voronoi";
 
+/**
+ * Calculates the Voronoi diagram for a given set of points.
+ * @param {Array<{x: number, y: number}>} points - The points to calculate the Voronoi diagram for.
+ * @param {number} r - The radius of the Voronoi cells.
+ * @param {number} padding - The padding around the Voronoi diagram.
+ * @returns {Object} - The computed Voronoi diagram.
+ */
 export function calcVoronoi(points, r, padding) {
     const voronoi = new Voronoi();
     let bbox = {xl: -1 * (r + padding), xr: r + padding, yt: -1 * (r + padding), yb: 0};

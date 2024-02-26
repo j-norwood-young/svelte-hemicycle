@@ -113,7 +113,6 @@
         </g>
         <g transform={`translate(${r+padding/2}, ${r + (padding + 10)})`}>
             <!-- Input text data -->
-            <text x={0} y={0} text-anchor="middle" alignment-baseline="middle" fill={color} font-size={font_size}>{`${clicked}`}</text>
             {#if (current_party)}
             <text x={0} y={0} text-anchor="middle" alignment-baseline="middle" fill={color} font-size={font_size}>{`${current_party.Name} : ${current_party.Overall} seats; ${current_party.Regional} provincial; ${current_party.NationalPR} national`}</text>
             {/if}
