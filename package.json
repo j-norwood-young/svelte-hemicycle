@@ -1,12 +1,10 @@
 {
   "name": "svelte-hemicycle",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "package": "svelte-package"
   },
@@ -16,7 +14,7 @@
   "exports": {
     "./Hemicycle.svelte": {
       "types": "./dist/Hemicycle.svelte.d.ts",
-      "svelte": "./dist/Hemicycle.svelte.js"
+      "svelte": "./dist/Hemicycle.svelte"
     }
   },
   "devDependencies": {
