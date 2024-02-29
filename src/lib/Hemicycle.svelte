@@ -11,7 +11,6 @@
     export let total_seats: number;
     export let color = "white";
     export let font_size: number | string = 12;
-    export let voronoi_stroke = "transparent";
     export let arc = 180;
     export let text_position: {x: number, y: number} | null = null;
 
