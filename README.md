@@ -71,11 +71,19 @@ The radius of the hemicycle.
 
 Default: 300
 
+```javascript
+r = 300;
+```
+
 ### rows
 
 The number of rows of seats to display.
 
 Default: 12
+
+```javascript
+rows = 12;
+```
 
 ### dotsize
 
