@@ -1,0 +1,209 @@
+{
+    "ElectoralEventID": 291,
+    "ElectoralEvent": "2014 NATIONAL ELECTION",
+    "PartyResults": [
+        {
+            "ID": 18,
+            "Name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+            "Regional": 0,
+            "NationalPR": 3,
+            "Overall": 3
+        },
+        {
+            "ID": 330,
+            "Name": "AFRICAN INDEPENDENT CONGRESS",
+            "Regional": 0,
+            "NationalPR": 3,
+            "Overall": 3
+        },
+        {
+            "ID": 7,
+            "Name": "AFRICAN NATIONAL CONGRESS",
+            "Regional": 131,
+            "NationalPR": 118,
+            "Overall": 249
+        },
+        {
+            "ID": 450,
+            "Name": "AFRICAN PEOPLE'S CONVENTION",
+            "Regional": 0,
+            "NationalPR": 1,
+            "Overall": 1
+        },
+        {
+            "ID": 938,
+            "Name": "AGANG SOUTH AFRICA",
+            "Regional": 0,
+            "NationalPR": 2,
+            "Overall": 2
+        },
+        {
+            "ID": 447,
+            "Name": "AL JAMA-AH",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 17,
+            "Name": "AZANIAN PEOPLE'S ORGANISATION",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 651,
+            "Name": "BUSHBUCKRIDGE RESIDENTS ASSOCIATION",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 499,
+            "Name": "CONGRESS  OF THE PEOPLE",
+            "Regional": 0,
+            "NationalPR": 3,
+            "Overall": 3
+        },
+        {
+            "ID": 52,
+            "Name": "DEMOCRATIC ALLIANCE",
+            "Regional": 44,
+            "NationalPR": 45,
+            "Overall": 89
+        },
+        {
+            "ID": 945,
+            "Name": "ECONOMIC FREEDOM FIGHTERS",
+            "Regional": 14,
+            "NationalPR": 11,
+            "Overall": 25
+        },
+        {
+            "ID": 647,
+            "Name": "FIRST NATION LIBERATION ALLIANCE",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 917,
+            "Name": "FRONT NASIONAAL/FRONT NATIONAL",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 45,
+            "Name": "INDEPENDENT CIVIC ORGANISATION OF SOUTH AFRICA",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 3,
+            "Name": "INKATHA FREEDOM PARTY",
+            "Regional": 5,
+            "NationalPR": 5,
+            "Overall": 10
+        },
+        {
+            "ID": 10,
+            "Name": "KEEP IT STRAIGHT AND SIMPLE",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 965,
+            "Name": "KINGDOM GOVERNANCE MOVEMENT",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 31,
+            "Name": "MINORITY FRONT",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 591,
+            "Name": "NATIONAL FREEDOM PARTY",
+            "Regional": 3,
+            "NationalPR": 3,
+            "Overall": 6
+        },
+        {
+            "ID": 8,
+            "Name": "PAN AFRICANIST CONGRESS OF AZANIA",
+            "Regional": 0,
+            "NationalPR": 1,
+            "Overall": 1
+        },
+        {
+            "ID": 503,
+            "Name": "PAN AFRICANIST MOVEMENT",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 957,
+            "Name": "PATRIOTIC ALLIANCE",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 466,
+            "Name": "PEOPLES ALLIANCE",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 613,
+            "Name": "UBUNTU PARTY",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 2,
+            "Name": "UNITED CHRISTIAN DEMOCRATIC PARTY",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 943,
+            "Name": "UNITED CONGRESS",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        },
+        {
+            "ID": 6,
+            "Name": "UNITED DEMOCRATIC MOVEMENT",
+            "Regional": 2,
+            "NationalPR": 2,
+            "Overall": 4
+        },
+        {
+            "ID": 4,
+            "Name": "VRYHEIDSFRONT PLUS",
+            "Regional": 1,
+            "NationalPR": 3,
+            "Overall": 4
+        },
+        {
+            "ID": 935,
+            "Name": "WORKERS AND SOCIALIST PARTY",
+            "Regional": 0,
+            "NationalPR": 0,
+            "Overall": 0
+        }
+    ]
+}

@@ -6,7 +6,6 @@ export function hemicycle(radius: number, rows: number, points: number, angle: n
         const r = radius - i * radius / rows;
         const arcLength = angle / 180 * Math.PI * r;
         totalArcLength += arcLength;
-        // console.log({r, arcLength, totalArcLength})
     }
     const distanceBetweenPoints = totalArcLength / points;
 
@@ -22,13 +21,13 @@ export function hemicycle(radius: number, rows: number, points: number, angle: n
             pointsInArc = points - total_points;
         }
         const localDistanceBetweenPoints = arcLength / pointsInArc;
-        // console.log({arcLength, pointsInArc})
+        const offset = (angle - 180) / 180 * Math.PI / 2;
         for (let j = 0; j < pointsInArc; j++) {
             total_points++;
             const angle = (j * localDistanceBetweenPoints / r) + (localDistanceBetweenPoints / r / 2);
-            const x = -r * Math.cos(angle);
-            const y = -r * Math.sin(angle);
-            result.push({x, y, a, angle });
+            const x = -r * Math.cos(angle - offset);
+            const y = -r * Math.sin(angle - offset);
+            result.push({ id: i, x, y, a, angle });
         }
         a++;
     }

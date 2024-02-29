@@ -1,26 +1,108 @@
 <script lang="ts">
     import Hemicycle from "./lib/Hemicycle.svelte";
     import data_2019 from "../data/npe_seat_calculation_results-2019.json";
-    import data_2024 from "../data/npe_seat_calculation_results-2024.json";
+    import data_2014 from "../data/npe_seat_calculation_results-2014.json";
+    import { colour } from "./lib/libs/colour";
     
-    const r = 300;
-    const rows = 12;
-    const dotsize = 5;
-    const padding = 30;
-    const total_seats = 400;
+    let r = 300;
+    let rows = 12;
+    let dotsize = 5;
+    let padding = 30;
+    let total_seats = 400;
     const color = "white";
     const font_size = "0.8em";
-    let data = data_2019;
+    let arc = 180;
+    let source_data = data_2019;
+    let data: PartyData[] = [];
+    let display = ["points", "text"];
+
+    $: {
+        data = source_data.PartyResults
+            .filter((results: PartyResult) => (results.Overall > 0))
+            .sort((a: PartyResult, b: PartyResult) => b.Overall - a.Overall)
+            .map((party: PartyResult, index: number) => {
+                return {
+                    id: party.ID,
+                    text: `${party.Name} (${party.Overall})`,
+                    color: colour(index, 100),
+                    count: party.Overall
+                }
+            });
+    }
+
+    const changeDisplay = (e: any) => {
+        const value = (e.target as HTMLInputElement)?.value;
+        if (!value) return;
+        if (display.includes(value)) {
+            display = display.filter(d => d !== value);
+        } else {
+            display = [...display, value];
+        }
+        display = display;
+    }
 </script>
 
 <main>
-    <button on:click={() => data = data_2019}>2019</button>
-    <button on:click={() => data = data_2024}>2024</button>
-    <h1>{ data.ElectoralEvent }</h1>
+    <button on:click={() => source_data = data_2014}>2014</button>
+    <button on:click={() => source_data = data_2019}>2019</button>
+    <h1>{ source_data.ElectoralEvent }</h1>
+    <div class="controls">
+        <div class="control">
+            <p>Arc</p>
+            <input type="range" min="10" max="360" bind:value={arc} />
+        </div>
+        <div class="control">
+            <p>Dot size</p>
+            <input type="range" min="1" max="10" bind:value={dotsize} />
+        </div>
+        <div class="control">
+            <p>Rows</p>
+            <input type="range" min="1" max="20" bind:value={rows} />
+        </div>
+        <div class="control">
+            <p>Radius</p>
+            <input type="range" min="100" max="500" bind:value={r} />
+        </div>
+    </div>
+    <div class="controls">
+        <div class="control">
+            <p>Points</p>
+            <input type="checkbox" on:change={changeDisplay} value="points" checked={display.includes("points")} />
+        </div>
+        <div class="control">
+            <p>Text</p>
+            <input type="checkbox" on:change={changeDisplay} value="text" checked={display.includes("text")} />
+        </div>
+        <div class="control">
+            <p>Voronoi</p>
+            <input type="checkbox" on:change={changeDisplay} value="voronoi" checked={display.includes("voronoi")} />
+        </div>
+        <div class="control">
+            <p>Arcs</p>
+            <input type="checkbox" on:change={changeDisplay} value="arcs" checked={display.includes("arcs")} />
+        </div>
+        <div class="control">
+            <p>Numbers</p>
+            <input type="checkbox" on:change={changeDisplay} value="numbers" checked={display.includes("numbers")} />
+        </div>
+    </div>
+    <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} {color} {font_size} {arc} {display}  />
     
-    <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} {color} {font_size} />
 </main>
 
 <style>
-    
+    .controls {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+    }
 </style>
