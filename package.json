@@ -3,6 +3,10 @@
   "private": false,
   "version": "1.0.1",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-norwood-young/svelte-hemicycle"
+  },
   "scripts": {
     "dev": "vite",
     "check": "svelte-check --tsconfig ./tsconfig.json",
