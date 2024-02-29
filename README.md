@@ -12,30 +12,44 @@ npm install svelte-hemicycle
 
 ```svelte
 <script>
-    import Hemicycle from 'svelte-hemicycle';
-    const data = [
-        {
-            "id": 1,
-            "text": "UDFMP",
-            "count": 60,
-            "color": "#FF0000"
-        },
-        {
-            "id": 2,
-            "text": "PDMF",
-            "count": 50,
-            "color": "#00FF00"
-        },
-        {
-            "id": 3,
-            "text": "DA",
-            "count": 40,
-            "color": "#0000FF"
-        }
-    ]
+  import Hemicycle from 'svelte-hemicycle';
+  const data = [
+      {
+          "id": 1,
+          "text": "UDFMP",
+          "count": 160,
+          "color": "#FF0000"
+      },
+      {
+          "id": 2,
+          "text": "PDMF",
+          "count": 150,
+          "color": "#00FF00"
+      },
+      {
+          "id": 3,
+          "text": "DA",
+          "count": 40,
+          "color": "#0000FF"
+      },
+      {
+          "id": 4,
+          "text": "PDP",
+          "count": 30,
+          "color": "#FFFF00"
+      },
+      {
+          "id": 5,
+          "text": "APC",
+          "count": 20,
+          "color": "#00FFFF"
+      }
+  ]
+  const total_seats = 400;
+  const rows= 12;
 </script>
 
-<Hemicycle {data} {total_seats=200} />
+<Hemicycle {data} {total_seats} {rows} />
 ```
 
 ## API

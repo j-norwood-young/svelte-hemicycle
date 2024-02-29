@@ -4,11 +4,13 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [svelte()],
+    base: "",
     build: {
-        lib: {
-            entry: "src/lib.ts",
-            name: "svelte-hemicycle",
-            fileName: (format) => `svelte-hemicycle.${format}.js`,
-        },
+        // lib: {
+        //     entry: "src/lib.ts",
+        //     name: "svelte-hemicycle",
+        //     fileName: (format) => `svelte-hemicycle.${format}.js`
+        // },
+        outDir: "demo"
     },
 });
