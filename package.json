@@ -1,7 +1,7 @@
 {
   "name": "svelte-hemicycle",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "repository": {
     "type": "git",
@@ -36,5 +36,12 @@
   "dependencies": {
     "svelte": "^4.2.11",
     "voronoijs": "^1.0.0"
-  }
+  },
+  "keywords": [
+    "svelte",
+    "hemicycle",
+    "elections",
+    "visualization",
+    "dataviz"
+  ]
 }
