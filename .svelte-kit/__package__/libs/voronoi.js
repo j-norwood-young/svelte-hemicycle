@@ -1,13 +1,27 @@
-import Voronoi from "voronoi";
-
-export function calcVoronoi(points, r, padding) {
+import { Voronoi, BoundingBox, Site, Diagram, Edge } from "voronoijs";
+export const calcVoronoi = (points) => {
     const voronoi = new Voronoi();
-    let bbox = {xl: -1 * (r + padding), xr: r + padding, yt: -1 * (r + padding), yb: 0};
+    let min_x = 0;
+    let max_x = 0;
+    let min_y = 0;
+    let max_y = 0;
+    for (let i = 0; i < points.length; i++) {
+        let point = points[i];
+        if (point.x < min_x)
+            min_x = point.x;
+        if (point.x > max_x)
+            max_x = point.x;
+        if (point.y < min_y)
+            min_y = point.y;
+        if (point.y > max_y)
+            max_y = point.y;
+    }
+    let bbox = { xl: min_x, xr: max_x, yt: min_y, yb: max_y };
     return voronoi.compute(points, bbox);
-}
-
-export function arcFromEdges(edges) {
-    if (!edges || edges.length === 0) return [];
+};
+export function shapeFromEdges(edges) {
+    if (!edges || edges.length === 0)
+        return "";
     let result = [];
     const first_edge = edges.shift();
     let start = first_edge.getStartpoint();

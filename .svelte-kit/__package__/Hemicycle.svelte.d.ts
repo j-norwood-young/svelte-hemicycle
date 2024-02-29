@@ -1,15 +1,21 @@
 import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
-        data: any;
+        data?: PartyData[] | undefined;
         r: number;
         rows: number;
         dotsize: number;
-        padding: number;
+        padding: number | [number, number] | [number, number, number, number];
         total_seats: number;
         color?: string | undefined;
-        font_size?: number | undefined;
-        voronoi_stroke?: string | undefined;
+        font_size?: string | number | undefined;
+        arc?: number | undefined;
+        text_position?: {
+            x: number;
+            y: number;
+        } | null | undefined;
+        display?: string[] | undefined;
+        current_party?: PartyData | null;
     };
     events: {
         [evt: string]: CustomEvent<any>;
