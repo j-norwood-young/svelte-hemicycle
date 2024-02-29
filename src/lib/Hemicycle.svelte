@@ -4,17 +4,17 @@
     import type { Site } from "voronoijs";
 
     export let data: PartyData[] = [];
-    export let r: number;
-    export let rows: number;
-    export let dotsize: number;
-    export let padding: number | [number, number] | [number, number, number, number];
+    export let r: number = 300;
+    export let rows: number = 12;
+    export let dotsize: number = 5;
+    export let padding: number | [number, number] | [number, number, number, number] = 10;
     export let total_seats: number;
     export let color = "white";
     export let font_size: number | string = 12;
     export let arc = 180;
     export let text_position: {x: number, y: number} | null = null;
 
-    export let display = ["points", "voronoi", "text"];
+    export let display = ["points", "text"];
 
     export let current_party: PartyData | null = null;
 
