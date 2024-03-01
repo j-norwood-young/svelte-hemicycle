@@ -43,8 +43,16 @@
 </script>
 
 <main>
-    <button on:click={() => source_data = data_2014}>2014</button>
-    <button on:click={() => source_data = data_2019}>2019</button>
+    <nav class="links">
+        <a href="https://www.npmjs.com/package/svelte-hemicycle" target="_blank">
+            <img src="https://img.shields.io/npm/v/svelte-hemicycle?style=flat-square" alt="npm version" />
+        </a>
+        <a href="https://github.com/j-norwood-young/svelte-hemicycle/tree/main" target="_blank">
+            <img src="https://img.shields.io/github/stars/j-norwood-young/svelte-hemicycle?style=flat-square" alt="github stars" />
+        </a>
+    </nav>
+    <button on:click={() => source_data = data_2014} class:active={source_data === data_2014}>2014</button>
+    <button on:click={() => source_data = data_2019} class:active={source_data === data_2019}>2019</button>
     <h1>{ source_data.ElectoralEvent }</h1>
     <div class="controls">
         <div class="control">
@@ -104,5 +112,23 @@
         align-items: center;
         justify-content: center;
         margin: 0 10px;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: row;
+        align-items: right;
+        justify-content: right;
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    .links a {
+        margin: 0 10px;
+    }
+
+    button.active {
+        background-color: #f0f0f0;
+        color: #000;
     }
 </style>
