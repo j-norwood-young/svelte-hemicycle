@@ -1,5 +1,7 @@
 # Svelte Hemicycle
 
+[![NPM](https://img.shields.io/npm/v/svelte-hemicycle.svg)](https://www.npmjs.com/package/svelte-hemicycle)
+
 A data visualisation for the South African elections as a Svelte component. It accepts data as a JSON property from the IEC's NPE Seat Calculation Results API and renders a hemicycle chart.
 
 ![Hemicycle](https://github.com/j-norwood-young/svelte-hemicycle/blob/main/src/assets/hemicycle.png)
