@@ -1,9 +1,13 @@
-import { Voronoi, BoundingBox, Site, Diagram, Edge } from "voronoijs";
+import * as pkg from "voronoijs";
+// Import types
+type Diagram = pkg.Diagram;
+type Site = pkg.Site;
+type BoundingBox = pkg.BoundingBox;
 
 type CalculateVoronoi = (points: Site[]) => Diagram;
 
 export const calcVoronoi: CalculateVoronoi = (points): Diagram => {
-    const voronoi = new Voronoi();
+    const voronoi = new pkg.Voronoi();
     let min_x = 0;
     let max_x = 0;
     let min_y = 0;
