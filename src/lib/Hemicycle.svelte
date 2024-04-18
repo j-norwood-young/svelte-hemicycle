@@ -13,6 +13,7 @@
     export let font_size: number | string = 12;
     export let arc = 180;
     export let text_position: {x: number, y: number} | null = null;
+    export let selectedShape: string = 'circle';
 
     export let display = ["points", "text"];
 
@@ -26,6 +27,11 @@
     let bottom_padding = 0;
     let left_padding = 0;
     let right_padding = 0;
+
+    let svgWidth = (r * 2) + left_padding + right_padding;
+    let svgHeight = (r * 2) + top_padding + bottom_padding;
+
+    let hexagonShape = 'M86.60254037844386 12L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z';
 
     $: {
         if (arc < 10) arc = 10;
@@ -86,12 +92,11 @@
 
     function unselectParty() {
         if (!clicked) current_party = null;
-    }
-    
+    }    
 </script>
 
 <main>
-    <svg width={(r * 2) + left_padding + right_padding} height={(r * 2) + top_padding + bottom_padding}>
+    <svg width={svgWidth} height={svgHeight}>
         <g id="arcs" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("arcs")}>
             {#each Array(rows) as _, i}
                 <!-- Draw a semicircle for each row -->
@@ -100,7 +105,11 @@
         </g>
         <g id="points" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("points")}>
             {#each points as point}
-                <circle data-party={point.data?.id} cx={point.x} cy={point.y} r={dotsize} fill={point.data?.color} opacity={current_party?.id ? point.data?.id === current_party?.id ? 1 : 0.5 : 1} />
+                {#if selectedShape === 'hexagon'}
+                    <path d={hexagonShape} transform={`translate(${point.x},${point.y}) scale(0.05)`} width={svgWidth / 10} data-party={point.data?.id} fill={point.data?.color}></path>
+                {:else}
+                    <circle data-party={point.data?.id} cx={point.x} cy={point.y} r={dotsize} fill={point.data?.color} opacity={current_party?.id ? point.data?.id === current_party?.id ? 1 : 0.5 : 1} />
+                {/if}
             {/each}
         </g>
         <g id="numbers" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("numbers")}>
