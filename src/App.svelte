@@ -15,6 +15,7 @@
     let source_data = data_2019;
     let data: PartyData[] = [];
     let display = ["points", "text"];
+    let selectedShape = 'hexagon';
 
     $: {
         data = source_data.PartyResults
@@ -94,7 +95,7 @@
             <input type="checkbox" on:change={changeDisplay} value="numbers" checked={display.includes("numbers")} />
         </div>
     </div>
-    <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} {color} {font_size} {arc} {display}  />
+    <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} {color} {font_size} {arc} {display} {selectedShape} />
     
 </main>
 
