@@ -106,9 +106,21 @@
         <g id="points" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("points")}>
             {#each points as point}
                 {#if selectedShape === 'hexagon'}
-                    <path d={hexagonShape} transform={`translate(${point.x},${point.y}) scale(0.05)`} width={svgWidth / 10} data-party={point.data?.id} fill={point.data?.color}></path>
+                    <path
+                        d={hexagonShape}
+                        transform={`translate(${point.x},${point.y}) rotate(-5) scale(0.07)`}
+                        data-party={point.data?.id}
+                        fill={point.data?.color}
+                        opacity={current_party?.id ? point.data?.id === current_party?.id ? 1 : 0.5 : 1}
+                    />
                 {:else}
-                    <circle data-party={point.data?.id} cx={point.x} cy={point.y} r={dotsize} fill={point.data?.color} opacity={current_party?.id ? point.data?.id === current_party?.id ? 1 : 0.5 : 1} />
+                    <circle
+                        data-party={point.data?.id}
+                        cx={point.x} cy={point.y}
+                        r={dotsize}
+                        fill={point.data?.color}
+                        opacity={current_party?.id ? point.data?.id === current_party?.id ? 1 : 0.5 : 1}
+                    />
                 {/if}
             {/each}
         </g>
