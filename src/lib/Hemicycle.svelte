@@ -28,9 +28,8 @@
     let left_padding = 0;
     let right_padding = 0;
 
-    let svgWidth = (r * 2) + left_padding + right_padding;
-    let svgHeight = (r * 2) + top_padding + bottom_padding;
-
+    let svgWidth = 0;
+    let svgHeight = 0;
     let hexagonShape = 'M86.60254037844386 12L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z';
 
     $: {
@@ -49,6 +48,8 @@
             }
         }
         voronoi = calcVoronoi(points as Site[]);
+        svgWidth = (r * 2) + left_padding + right_padding;
+        svgHeight = (r * 2) + top_padding + bottom_padding;
     }
 
     function calcPadding() {
