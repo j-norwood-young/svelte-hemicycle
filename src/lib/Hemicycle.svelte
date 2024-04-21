@@ -15,6 +15,8 @@
     export let color = "white";
     export let font_size: number | string = 12;
     export let arc = 180;
+  export let text_position: { x: number; y: number } | null = null;
+  export let selectedShape: string = "circle";
   export let hcWidth = 0;
   export let hcHeight = 0;
 
@@ -52,6 +54,8 @@
             }
         }
         voronoi = calcVoronoi(points as Site[]);
+    svgWidth = r * 2 + left_padding + right_padding;
+    svgHeight = r * 2 + top_padding + bottom_padding;
     hcWidth = svgWidth;
     hcHeight = svgHeight;
     }
@@ -129,7 +133,7 @@
       class:hide={!display.includes("points")}
     >
             {#each points as point}
-                {#if selectedShape === 'hexagon'}
+        {#if selectedShape === "hexagon"}
                     <path
                         d={hexagonShape}
                         transform={`translate(${point.x},${point.y}) rotate(-5) scale(0.07)`}
