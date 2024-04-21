@@ -7,7 +7,10 @@
     export let r: number = 300;
     export let rows: number = 12;
     export let dotsize: number = 5;
-    export let padding: number | [number, number] | [number, number, number, number] = 10;
+  export let padding:
+    | number
+    | [number, number]
+    | [number, number, number, number] = 10;
     export let total_seats: number;
     export let color = "white";
     export let font_size: number | string = 12;
@@ -30,7 +33,8 @@
 
     let svgWidth = 0;
     let svgHeight = 0;
-    let hexagonShape = 'M86.60254037844386 12L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z';
+  let hexagonShape =
+    "M86.60254037844386 12L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z";
 
     $: {
         if (arc < 10) arc = 10;
@@ -97,14 +101,27 @@
 </script>
 
 <main>
-    <svg width={svgWidth} height={svgHeight}>
-        <g id="arcs" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("arcs")}>
+    <g
+      id="arcs"
+      transform={`translate(${r + left_padding}, ${r + top_padding})`}
+      class:hide={!display.includes("arcs")}
+    >
             {#each Array(rows) as _, i}
                 <!-- Draw a semicircle for each row -->
-                <path d={`M ${r - (i * (r / rows))},0 A ${r - (i * (r / rows))},${r - (i * (r / rows))} 0 0,0 ${-(r - (i * (r / rows)))},0`} fill="transparent" stroke="white" stroke-width="1" opacity="0.4" />
+        <path
+          d={`M ${r - i * (r / rows)},0 A ${r - i * (r / rows)},${r - i * (r / rows)} 0 0,0 ${-(r - i * (r / rows))},0`}
+          fill="transparent"
+          stroke="white"
+          stroke-width="1"
+          opacity="0.4"
+        />
             {/each}
         </g>
-        <g id="points" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("points")}>
+    <g
+      id="points"
+      transform={`translate(${r + left_padding}, ${r + top_padding})`}
+      class:hide={!display.includes("points")}
+    >
             {#each points as point}
                 {#if selectedShape === 'hexagon'}
                     <path
@@ -112,78 +129,160 @@
                         transform={`translate(${point.x},${point.y}) rotate(-5) scale(0.07)`}
                         data-party={point.data?.id}
                         fill={point.data?.color}
-                        opacity={current_party?.id ? point.data?.id === current_party?.id ? 1 : 0.5 : 1}
+            opacity={current_party?.id
+              ? point.data?.id === current_party?.id
+                ? 1
+                : 0.5
+              : 1}
                     />
                 {:else}
                     <circle
                         data-party={point.data?.id}
-                        cx={point.x} cy={point.y}
+            cx={point.x}
+            cy={point.y}
                         r={dotsize}
                         fill={point.data?.color}
-                        opacity={current_party?.id ? point.data?.id === current_party?.id ? 1 : 0.5 : 1}
+            opacity={current_party?.id
+              ? point.data?.id === current_party?.id
+                ? 1
+                : 0.5
+              : 1}
                     />
                 {/if}
             {/each}
         </g>
-        <g id="numbers" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("numbers")}>
+    <g
+      id="numbers"
+      transform={`translate(${r + left_padding}, ${r + top_padding})`}
+      class:hide={!display.includes("numbers")}
+    >
             {#each points as point, i}
-                <text x={point.x} y={point.y} text-anchor="middle" alignment-baseline="middle" fill="white" font-size="8">{ `${i}` }</text>
+        <text
+          x={point.x}
+          y={point.y}
+          text-anchor="middle"
+          alignment-baseline="middle"
+          fill="white"
+          font-size="8">{`${i}`}</text
+        >
             {/each}
         </g>
-        <g id="voronoi" transform={`translate(${r + left_padding}, ${r + top_padding})`}>
+    <g
+      id="voronoi"
+      transform={`translate(${r + left_padding}, ${r + top_padding})`}
+    >
             <!-- Draw Voronoi -->
             {#each voronoi.cells as cell, i}
-                {#if (cell.halfedges?.length > 0)}
+        {#if cell.halfedges?.length > 0}
                 <path 
                     class="voronoi_path" 
                     d={shapeFromEdges(cell.halfedges).toString()} 
                     fill="transparent" 
                     stroke={display.includes("voronoi") ? "white" : "transparent"}
                     stroke-width={display.includes("voronoi") ? 1 : 0}
-                    on:mouseover={() => {selectParty(cell.site);}} 
-                    on:focus={() => selectParty(cell.site)} on:mouseout={() => unselectParty()} 
-                    on:blur={() => unselectParty()} role="button" tabindex={i}
-                    on:click={() => { clickParty(cell.site)}}
-                    on:keypress={(e) => {if (e.key === "Enter") {clickParty(cell.site);}}}
+            on:mouseover={() => {
+              selectParty(cell.site);
+            }}
+            on:focus={() => selectParty(cell.site)}
+            on:mouseout={() => unselectParty()}
+            on:blur={() => unselectParty()}
+            role="button"
+            tabindex={i}
+            on:click={() => {
+              clickParty(cell.site);
+            }}
+            on:keypress={(e) => {
+              if (e.key === "Enter") {
+                clickParty(cell.site);
+              }
+            }}
                 />
                 {/if}
             {/each}
         </g>
-        <g id="text" transform={`translate(${text_position?.x || r + left_padding}, ${text_position?.y || r + top_padding + 20})`} class:hide={!display.includes("text")}>
+    <g
+      id="text"
+      transform={`translate(${text_position?.x || r + left_padding}, ${text_position?.y || r + top_padding + 20})`}
+      class:hide={!display.includes("text")}
+    >
             <!-- Input text data -->
-            {#if (current_party)}
-            <text x={0} y={0} text-anchor="middle" alignment-baseline="middle" fill={color} font-size={font_size}>{`${current_party.text}`}</text>
+      {#if current_party}
+        <text
+          x={0}
+          y={0}
+          text-anchor="middle"
+          alignment-baseline="middle"
+          fill={color}
+          font-size={font_size}>{`${current_party.text}`}</text
+        >
             {/if}
         </g>
-        <g id="referencePoints" transform={`translate(${r + (left_padding)}, ${r + (top_padding)})`} class:hide={!display.includes("referencePoints")}>
+    <g
+      id="referencePoints"
+      transform={`translate(${r + left_padding}, ${r + top_padding})`}
+      class:hide={!display.includes("referencePoints")}
+    >
             <g class="reference_points">
-                <text x=0 y=10 text-anchor="middle" alignment-baseline="middle" fill="white" font-size="8">0, 0</text>
-                <circle cx=0 cy=0 r=2 fill="white" />
+        <text
+          x="0"
+          y="10"
+          text-anchor="middle"
+          alignment-baseline="middle"
+          fill="white"
+          font-size="8">0, 0</text
+        >
+        <circle cx="0" cy="0" r="2" fill="white" />
             </g>
             <g class="reference_points">
-                <text x={r} y=10 text-anchor="middle" alignment-baseline="middle" fill="white" font-size="8">{`${r}, ${0}`}</text>
-                <circle cx={r} cy={0} r=2 fill="white" />
+        <text
+          x={r}
+          y="10"
+          text-anchor="middle"
+          alignment-baseline="middle"
+          fill="white"
+          font-size="8">{`${r}, ${0}`}</text
+        >
+        <circle cx={r} cy={0} r="2" fill="white" />
             </g>
             <g class="reference_points">
-                <text x={r - 10} y={-r + 10} text-anchor="middle" alignment-baseline="middle" fill="white" font-size="8">{`${r}, ${-r}`}</text>
-                <circle cx={r} cy={-r} r=2 fill="white" />
+        <text
+          x={r - 10}
+          y={-r + 10}
+          text-anchor="middle"
+          alignment-baseline="middle"
+          fill="white"
+          font-size="8">{`${r}, ${-r}`}</text
+        >
+        <circle cx={r} cy={-r} r="2" fill="white" />
             </g>
             <g class="reference_points">
-                <text x={-r + 10} y={-r + 10} text-anchor="middle" alignment-baseline="middle" fill="white" font-size="8">{`-${r}, ${-r}`}</text>
-                <circle cx={-r} cy={-r} r=2 fill="white" />
+        <text
+          x={-r + 10}
+          y={-r + 10}
+          text-anchor="middle"
+          alignment-baseline="middle"
+          fill="white"
+          font-size="8">{`-${r}, ${-r}`}</text
+        >
+        <circle cx={-r} cy={-r} r="2" fill="white" />
             </g>
             <g class="reference_points">
-                <text x={-r} y={10} text-anchor="middle" alignment-baseline="middle" fill="white" font-size="8">{`-${r}, ${0}`}</text>
-                <circle cx={-r} cy={0} r=2 fill="white" />
+        <text
+          x={-r}
+          y={10}
+          text-anchor="middle"
+          alignment-baseline="middle"
+          fill="white"
+          font-size="8">{`-${r}, ${0}`}</text
+        >
+        <circle cx={-r} cy={0} r="2" fill="white" />
             </g>
         </g>
     </svg>
 </main>
 
 <style>
-
     .hide {
         display: none;
     }
-    
 </style>
