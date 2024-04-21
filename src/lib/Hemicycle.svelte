@@ -15,8 +15,8 @@
     export let color = "white";
     export let font_size: number | string = 12;
     export let arc = 180;
-    export let text_position: {x: number, y: number} | null = null;
-    export let selectedShape: string = 'circle';
+  export let hcWidth = 0;
+  export let hcHeight = 0;
 
     export let display = ["points", "text"];
 
@@ -52,8 +52,8 @@
             }
         }
         voronoi = calcVoronoi(points as Site[]);
-        svgWidth = (r * 2) + left_padding + right_padding;
-        svgHeight = (r * 2) + top_padding + bottom_padding;
+    hcWidth = svgWidth;
+    hcHeight = svgHeight;
     }
 
     function calcPadding() {
@@ -101,6 +101,12 @@
 </script>
 
 <main>
+  <svg
+    viewBox={`0 0 ${hcWidth} ${hcHeight}`}
+    width={hcWidth}
+    height={hcHeight}
+    preserveAspectRatio="none"
+  >
     <g
       id="arcs"
       transform={`translate(${r + left_padding}, ${r + top_padding})`}
