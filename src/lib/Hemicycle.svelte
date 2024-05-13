@@ -7,18 +7,12 @@
     export let r: number = 300;
     export let rows: number = 12;
     export let dotsize: number = 5;
-    export let padding:
-        | number
-        | [number, number]
-        | [number, number, number, number] = 10;
+    export let padding:| number | [number, number] | [number, number, number, number] = 10;
     export let total_seats: number;
     export let color = "white";
     export let font_size: number | string = 12;
     export let arc = 180;
     export let text_position: { x: number; y: number } | null = null;
-    export let selectedShape: string = "circle";
-    export let hcWidth = 0;
-    export let hcHeight = 0;
 
     export let display = ["points", "text"];
 
@@ -32,11 +26,6 @@
     let bottom_padding = 0;
     let left_padding = 0;
     let right_padding = 0;
-
-    let svgWidth = 0;
-    let svgHeight = 0;
-    let hexagonShape =
-        "M86.60254037844386 12L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z";
 
     $: {
         if (arc < 10) arc = 10;
@@ -54,10 +43,6 @@
             }
         }
         voronoi = calcVoronoi(points as Site[]);
-        svgWidth = r * 2 + left_padding + right_padding;
-        svgHeight = r * 2 + top_padding + bottom_padding;
-        hcWidth = svgWidth;
-        hcHeight = svgHeight;
     }
 
     function calcPadding() {
@@ -106,9 +91,6 @@
 
 <main>
     <svg
-        viewBox={`0 0 ${hcWidth} ${hcHeight}`}
-        width={hcWidth}
-        height={hcHeight}
         preserveAspectRatio="none"
     >
         <g
@@ -133,19 +115,6 @@
             class:hide={!display.includes("points")}
         >
             {#each points as point}
-                {#if selectedShape === "hexagon"}
-                    <path
-                        d={hexagonShape}
-                        transform={`translate(${point.x},${point.y}) rotate(-5) scale(0.07)`}
-                        data-party={point.data?.id}
-                        fill={point.data?.color}
-                        opacity={current_party?.id
-                            ? point.data?.id === current_party?.id
-                                ? 1
-                                : 0.5
-                            : 1}
-                    />
-                {:else}
                     <circle
                         data-party={point.data?.id}
                         cx={point.x}
@@ -158,7 +127,6 @@
                                 : 0.5
                             : 1}
                     />
-                {/if}
             {/each}
         </g>
         <g
