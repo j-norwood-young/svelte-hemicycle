@@ -15,16 +15,9 @@
     export let text_position: {x: number, y: number} | null = null;
     export let selectedShape: string = 'circle';
 
-    export let hcWidth = 0;
-    export let hcHeight = 0;
-    export let selectedShape: string = "circle";
     export let display = ["points", "text"];
 
     export let current_party: PartyData | null = null;
-
-    let hexagonShape = "M86.60254037844386 12L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z";
-    let svgWidth = 0;
-    let svgHeight = 0;
 
     let total_occupied_seats = 0;
     let points: Array<Point> = [];
@@ -55,10 +48,8 @@
             }
         }
         voronoi = calcVoronoi(points as Site[]);
-        svgWidth = r * 2 + left_padding + right_padding;
-        svgHeight = r * 2 + top_padding + bottom_padding;
-        hcWidth = svgWidth;
-        hcHeight = svgHeight;
+        svgWidth = (r * 2) + left_padding + right_padding;
+        svgHeight = (r * 2) + top_padding + bottom_padding;
     }
 
     function calcPadding() {
