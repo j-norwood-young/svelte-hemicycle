@@ -175,6 +175,41 @@ display = ["points", "text"]; // Default
 display = ["points", "text", "arc", "numbers", "voronoi", "referencePoints"]; // All
 ```
 
+### shape
+
+Choose between circle and hexagon.
+
+Default: "circle"
+
+```javascript
+shape = "circle";
+shape = "hexagon";
+```
+
+### stroke
+
+The colour of the stroke around the shapes (Currently hexagon only).
+
+default: "#444444"
+
+```javascript
+stroke = "white";
+```
+
+### display_width and display_height
+
+The width and height of the SVG.
+
+Default: 600w x 300h
+
+Tip: For 180 degree arcs, you might want to set the height as half the width. For acute or obtuse angles, you might want to tend towards square.
+
+```javascript
+display_width = 600;
+display_height = 300;
+```
+
+
 ## License
 
 MIT

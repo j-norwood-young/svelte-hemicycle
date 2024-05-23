@@ -15,7 +15,9 @@
     let source_data = data_2019;
     let data: PartyData[] = [];
     let display = ["points", "text"];
-    let selectedShape = 'hexagon';
+    let shape = 'hexagon';
+    let display_width = 600;
+    let display_height = 300;
 
     $: {
         data = source_data.PartyResults
@@ -95,7 +97,26 @@
             <input type="checkbox" on:change={changeDisplay} value="numbers" checked={display.includes("numbers")} />
         </div>
     </div>
-    <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} {color} {font_size} {arc} {display} {selectedShape} />
+    <div class="controls">
+        <div class="control">
+            <p>Shape</p>
+            <select bind:value={shape}>
+                <option value="hexagon">Hexagon</option>
+                <option value="circle">Circle</option>
+            </select>
+        </div>
+        <div class="control">
+            <p>Display Width</p>
+            <input type="display_width" min="10" max="1000" bind:value={display_width} />
+        </div>
+        <div class="control">
+            <p>Display Height</p>
+            <input type="display_height" min="10" max="1000" bind:value={display_height} />
+        </div>
+    </div>
+    <div style="border: #FFF 1px solid; margin-top: 30px">
+        <Hemicycle {r} {rows} {padding} {dotsize} {total_seats} {data} {color} {font_size} {arc} {display} {shape} {display_height} {display_width} />
+    </div>
     
 </main>
 

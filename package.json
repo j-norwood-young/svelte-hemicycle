@@ -1,7 +1,7 @@
 {
   "name": "svelte-hemicycle",
   "private": false,
-  "version": "1.0.6",
+  "version": "2.1.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -13,7 +13,8 @@
     "package": "svelte-package",
     "build": "vite build",
     "preview": "vite preview",
-    "prepublishOnly": "svelte-check --tsconfig ./tsconfig.json && svelte-package"
+    "prepublishOnly": "svelte-check --tsconfig ./tsconfig.json && svelte-package",
+    "publish": "npm publish"
   },
   "files": [
     "dist"
